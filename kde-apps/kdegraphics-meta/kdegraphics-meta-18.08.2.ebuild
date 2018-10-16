@@ -12,7 +12,7 @@ IUSE="scanner"
 
 RDEPEND="
 	$(add_kdeapps_dep gwenview)
-	$(add_kdeapps_dep kamera)
+
 
 
 
