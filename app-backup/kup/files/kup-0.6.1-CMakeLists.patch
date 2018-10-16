@@ -1,0 +1,53 @@
+--- CMakeLists.txt.orig	2016-08-02 21:11:01.616595187 +0300
++++ CMakeLists.txt	2016-08-02 21:13:48.116700678 +0300
+@@ -1,12 +1,24 @@
+ cmake_minimum_required(VERSION 3.0)
+ 
+ set(BUILD_SHARED_LIBS ON)
+-add_subdirectory(libgit2-0.19.0)
+-include_directories(${CMAKE_SOURCE_DIR}/libgit2-0.19.0/include)
++
+ project(kup)
+ 
+-find_package(ECM REQUIRED NO_MODULE)
+-set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
++# ECM setup
++find_package(ECM 5.24.0  NO_MODULE)
++#set_package_properties(ECM PROPERTIES TYPE REQUIRED DESCRIPTION "Extra CMake Modules." URL "https://projects.kde.org/projects/kdesupport/extra-cmake-modules")
++
++set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR})
++
++# libgit2 integration, at least 0.22 with proper git_libgit2_init()
++find_package(LibGit2 "0.22.0")
++
++# set right defines for libgit2 usage
++if(LIBGIT2_FOUND)
++  add_definitions(-DLIBGIT2_FOUND)
++  set (PROJECT_OPTIONAL_LIBS LibGit2::LibGit2)
++endif()
++
+ 
+ if(${CMAKE_BUILD_TYPE} STREQUAL "Debug" OR ${CMAKE_BUILD_TYPE} STREQUAL "DebugFull")
+   message(WARNING "enabling debug output!")
+--- ./filedigger/CMakeLists.txt.orig	2016-08-02 21:55:07.152067901 +0300
++++ ./filedigger/CMakeLists.txt	2016-08-02 21:55:14.446984144 +0300
+@@ -25,7 +25,7 @@
+ KF5::KIOFileWidgets
+ KF5::I18n
+ KF5::IconThemes
+-git24kup
++git2
+ )
+ 
+ ########### install files ###############
+--- ./kioslave/CMakeLists.txt.orig	2016-08-02 21:55:22.455892194 +0300
++++ ./kioslave/CMakeLists.txt	2016-08-02 21:55:29.062816337 +0300
+@@ -10,7 +10,7 @@
+ Qt5::Core
+ KF5::KIOCore
+ KF5::I18n
+-git24kup
++git2
+ )
+ 
+ install(TARGETS kio_bup DESTINATION ${PLUGIN_INSTALL_DIR})
