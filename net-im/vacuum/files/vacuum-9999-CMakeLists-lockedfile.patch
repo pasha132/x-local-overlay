@@ -1,0 +1,11 @@
+--- CMakeLists.txt.orig	2017-05-12 23:29:18.080521373 +0300
++++ CMakeLists.txt	2017-05-12 23:29:42.400210199 +0300
+@@ -57,7 +57,7 @@
+ find_library(SYSTEM_ZLIB_FOUND z)
+ find_library(SYSTEM_IDN_FOUND idn)
+ find_library(SYSTEM_MINIZIP_FOUND minizip)
+-find_library(SYSTEM_QTLOCKEDFILE_FOUND QtSolutions_LockedFile-2.4)
++find_library(SYSTEM_QTLOCKEDFILE_FOUND Qt5Solutions_LockedFile-2.4)
+ 
+ if (FORCE_BUNDLED_MINIZIP)
+ 	set(SYSTEM_MINIZIP_FOUND NO)
