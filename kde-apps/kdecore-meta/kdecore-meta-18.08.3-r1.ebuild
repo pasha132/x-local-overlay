@@ -11,14 +11,15 @@ IUSE="+handbook"
 
 RDEPEND="
 	$(add_kdeapps_dep dolphin)
-	$(add_kdeapps_dep kdialog)
-
-
-
 
 
 
 	$(add_kdeapps_dep konsole)
 
 	handbook? ( $(add_kdeapps_dep khelpcenter) )
+
+
+
+
+
 "
