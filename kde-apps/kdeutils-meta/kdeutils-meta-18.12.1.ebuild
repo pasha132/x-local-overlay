@@ -20,7 +20,7 @@ RDEPEND="
 
 	>=kde-apps/kdebugsettings-${PV}:${SLOT}
 
-	>=kde-apps/kgpg-${PV}:${SLOT}
+
 
 
 	>=kde-apps/ktimer-${PV}:${SLOT}
