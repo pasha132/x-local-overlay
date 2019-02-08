@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Authors
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -14,7 +14,7 @@ IUSE="7zip cups floppy lrz rar"
 RDEPEND="
 	>=kde-apps/ark-${PV}:${SLOT}
 
-
+	>=kde-apps/kate-${PV}:${SLOT}
 
 	>=kde-apps/kcalc-${PV}:${SLOT}
 
@@ -33,11 +33,9 @@ RDEPEND="
 RDEPEND="${RDEPEND}
 	7zip? ( app-arch/p7zip )
 	lrz? ( app-arch/lrzip )
-	rar? (
-		|| (
-			app-arch/unar
-			app-arch/unrar
-		)
+	rar? ( || (
 		app-arch/rar
-	)
+		app-arch/unrar
+		app-arch/unar
+	) )
 "
