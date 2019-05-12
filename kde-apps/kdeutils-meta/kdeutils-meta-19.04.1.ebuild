@@ -4,7 +4,7 @@
 EAPI=7
 
 DESCRIPTION="kdeutils - merge this to pull in all kdeutils-derived packages"
-HOMEPAGE="https://www.kde.org/applications/utilities https://utils.kde.org"
+HOMEPAGE="https://kde.org/applications/utilities https://utils.kde.org"
 
 LICENSE="metapackage"
 SLOT="5"
@@ -13,16 +13,16 @@ IUSE="7zip cups floppy lrz rar"
 
 RDEPEND="
 	>=kde-apps/ark-${PV}:${SLOT}
-
+	>=kde-apps/filelight-${PV}:${SLOT}
 	>=kde-apps/kate-${PV}:${SLOT}
-
+	>=kde-apps/kbackup-${PV}:${SLOT}
 	>=kde-apps/kcalc-${PV}:${SLOT}
-
+	>=kde-apps/kcharselect-${PV}:${SLOT}
 	>=kde-apps/kdebugsettings-${PV}:${SLOT}
-
-
-
-
+	>=kde-apps/kdf-${PV}:${SLOT}
+	>=kde-apps/kgpg-${PV}:${SLOT}
+	>=kde-apps/kimagemapeditor-${PV}:${SLOT}
+	>=kde-apps/kteatime-${PV}:${SLOT}
 	>=kde-apps/ktimer-${PV}:${SLOT}
 	>=kde-apps/kwalletmanager-${PV}:${SLOT}
 	>=kde-apps/sweeper-${PV}:${SLOT}
