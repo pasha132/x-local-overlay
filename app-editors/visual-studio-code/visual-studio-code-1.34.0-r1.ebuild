@@ -1,23 +1,24 @@
 # Copyright 1999-2019 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
-inherit eutils pax-utils
+inherit desktop pax-utils
 
 DESCRIPTION="Multiplatform Visual Studio Code from Microsoft"
 HOMEPAGE="https://code.visualstudio.com"
-BASE_URI="https://vscode-update.azurewebsites.net/${PV}"
+BASE_URI="https://update.code.visualstudio.com/${PV}/@arch@/stable"
+
 SRC_URI="
-	x86? ( ${BASE_URI}/linux-ia32/stable ->  ${P}-x86.tar.gz )
-	amd64? ( ${BASE_URI}/linux-x64/stable -> ${P}-amd64.tar.gz )
+	x86? ( ${BASE_URI/@arch@/linux-ia32} ->  ${P}-x86.tar.gz )
+	amd64? ( ${BASE_URI/@arch@/linux-x64} -> ${P}-amd64.tar.gz )
 	"
 RESTRICT="mirror strip bindist"
 
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~x86 ~amd64"
-IUSE="libsecret"
+IUSE="global-menu libsecret qt5 +oss"
 
 DEPEND="
 	>=media-libs/libpng-1.2.46
@@ -29,10 +30,17 @@ DEPEND="
 
 RDEPEND="
 	${DEPEND}
+	>=net-print/cups-2.0.0
 	x11-libs/libnotify
 	x11-libs/libXScrnSaver
 	dev-libs/nss
 	libsecret? ( app-crypt/libsecret[crypt] )
+	global-menu? (
+		dev-libs/libdbusmenu
+		qt5? (
+			dev-libs/libdbusmenu-qt
+		)
+	)
 "
 
 QA_PRESTRIPPED="opt/${PN}/code"
@@ -55,7 +63,7 @@ src_install(){
 	fperms +x "/opt/${PN}/resources/app/node_modules.asar.unpacked/vscode-ripgrep/bin/rg"
 	fperms +x "/opt/${PN}/resources/app/extensions/git/dist/askpass.sh"
 	insinto "/usr/share/licenses/${PN}"
-	newins "resources/app/LICENSE.txt" "LICENSE"
+	newins "resources/app/LICENSE.rtf" "LICENSE"
 }
 
 pkg_postinst(){
