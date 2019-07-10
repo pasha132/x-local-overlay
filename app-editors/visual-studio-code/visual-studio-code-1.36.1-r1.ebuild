@@ -7,9 +7,8 @@ inherit desktop pax-utils
 
 DESCRIPTION="Multiplatform Visual Studio Code from Microsoft"
 HOMEPAGE="https://code.visualstudio.com"
-BASE_URI="https://update.code.visualstudio.com/${PV}/@arch@/stable"
+SRC_URI="https://update.code.visualstudio.com/${PV}/linux-x64/stable -> ${P}-amd64.tar.gz"
 
-SRC_URI="${BASE_URI/@arch@/linux-x64} -> ${P}-amd64.tar.gz"
 RESTRICT="mirror strip bindist"
 
 LICENSE="MIT"
@@ -18,18 +17,18 @@ KEYWORDS="~amd64"
 IUSE="global-menu libsecret qt5 +oss"
 
 DEPEND="
-	>=media-libs/libpng-1.2.46
-	>=x11-libs/gtk+-2.24.8-r1:2
-	x11-libs/cairo
-	gnome-base/gconf
-	x11-libs/libXtst
-"
+	>=gnome-base/gconf-3.2.6-r4:2
+	>=media-libs/libpng-1.2.46:0
+	>=x11-libs/cairo-1.14.12:0
+	>=x11-libs/gtk+-2.24.31-r1:2
+	>=x11-libs/libXtst-1.2.3:0
+	"
 
 RDEPEND="
 	${DEPEND}
-	>=net-print/cups-2.0.0
-	x11-libs/libnotify
-	x11-libs/libXScrnSaver
+	>=net-print/cups-2.1.4:0
+	>=x11-libs/libnotify-0.7.7:0
+	>=x11-libs/libXScrnSaver-1.2.2-r1:0
 	dev-libs/nss
 	libsecret? ( app-crypt/libsecret[crypt] )
 	global-menu? (
@@ -52,11 +51,11 @@ src_install(){
 	insinto "/opt/${PN}"
 	doins -r *
 	dosym "/opt/${PN}/bin/code" "/usr/bin/${PN}"
-	make_desktop_entry "${PN}" "Visual Studio Code" "${PN}" "Development;IDE"
+	dosym "/opt/${PN}/bin/code" "/usr/bin/vscode"
+	make_desktop_entry "vscode" "Visual Studio Code" "${PN}" "Development;IDE"
 	doicon ${FILESDIR}/${PN}.png
 	fperms +x "/opt/${PN}/code"
 	fperms +x "/opt/${PN}/bin/code"
-	fperms +x "/opt/${PN}/libnode.so"
 	fperms +x "/opt/${PN}/resources/app/node_modules.asar.unpacked/vscode-ripgrep/bin/rg"
 	fperms +x "/opt/${PN}/resources/app/extensions/git/dist/askpass.sh"
 	insinto "/usr/share/licenses/${PN}"
