@@ -9,7 +9,7 @@ HOMEPAGE="https://kde.org/applications/utilities https://utils.kde.org"
 LICENSE="metapackage"
 SLOT="5"
 KEYWORDS="~amd64 ~arm64 ~x86"
-IUSE="7zip cups floppy lrz rar"
+IUSE="7zip cups floppy gpg lrz rar"
 
 RDEPEND="
 	>=kde-apps/ark-${PV}:${SLOT}
@@ -28,6 +28,7 @@ RDEPEND="
 	>=kde-apps/sweeper-${PV}:${SLOT}
 	cups? ( >=kde-apps/print-manager-${PV}:${SLOT} )
 	floppy? ( >=kde-apps/kfloppy-${PV}:${SLOT} )
+	gpg? ( >=kde-apps/kgpg-${PV}:${SLOT} )
 "
 # Optional runtime deps: kde-apps/ark
 RDEPEND="${RDEPEND}
