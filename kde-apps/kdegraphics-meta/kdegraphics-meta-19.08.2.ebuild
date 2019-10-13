@@ -18,6 +18,7 @@ RDEPEND="
 
 
 
+
 	>=kde-apps/libkdcraw-${PV}:${SLOT}
 	>=kde-apps/libkexiv2-${PV}:${SLOT}
 	>=kde-apps/libkipi-${PV}:${SLOT}
