@@ -1,4 +1,4 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -9,7 +9,7 @@ HOMEPAGE="https://kde.org/applications/utilities https://utils.kde.org"
 LICENSE="metapackage"
 SLOT="5"
 KEYWORDS="~amd64 ~arm64 ~x86"
-IUSE="7zip cups floppy gpg lrz rar"
+IUSE="7zip cups floppy gpg lrz rar +webengine"
 
 RDEPEND="
 	>=kde-apps/ark-${PV}:${SLOT}
@@ -21,7 +21,6 @@ RDEPEND="
 	>=kde-apps/kdebugsettings-${PV}:${SLOT}
 
 
-
 	>=kde-apps/ktimer-${PV}:${SLOT}
 	>=kde-apps/kwalletmanager-${PV}:${SLOT}
 	>=kde-apps/sweeper-${PV}:${SLOT}
@@ -29,6 +28,7 @@ RDEPEND="
 	cups? ( >=kde-apps/print-manager-${PV}:${SLOT} )
 	floppy? ( >=kde-apps/kfloppy-${PV}:${SLOT} )
 	gpg? ( >=kde-apps/kgpg-${PV}:${SLOT} )
+	webengine? ( >=kde-apps/kimagemapeditor-${PV}:${SLOT} )
 "
 # Optional runtime deps: kde-apps/ark
 RDEPEND="${RDEPEND}
