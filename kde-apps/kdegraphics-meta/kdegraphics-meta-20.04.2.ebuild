@@ -4,11 +4,11 @@
 EAPI=7
 
 DESCRIPTION="kdegraphics - merge this to pull in all kdegraphics-derived packages"
-HOMEPAGE="https://kde.org/applications/graphics/"
+HOMEPAGE="https://kde.org/applications/graphics"
 
 LICENSE="metapackage"
 SLOT="5"
-KEYWORDS="~amd64 ~arm64 ~ppc64"
+KEYWORDS="~amd64 ~arm64 ~ppc64 ~x86"
 IUSE="scanner"
 
 RDEPEND="

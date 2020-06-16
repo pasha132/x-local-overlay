@@ -8,7 +8,7 @@ HOMEPAGE="https://kde.org/"
 
 LICENSE="metapackage"
 SLOT="5"
-KEYWORDS="~amd64 ~arm64"
+KEYWORDS="~amd64 ~arm64 ~x86"
 IUSE="dropbox +telepathy"
 
 RDEPEND="
@@ -18,6 +18,7 @@ RDEPEND="
 
 
 	>=kde-apps/zeroconf-ioslave-${PV}:${SLOT}
+
 	dropbox? ( >=kde-apps/dolphin-plugins-dropbox-${PV}:${SLOT} )
 	telepathy? ( >=kde-apps/plasma-telepathy-meta-${PV}:${SLOT} )
 "
