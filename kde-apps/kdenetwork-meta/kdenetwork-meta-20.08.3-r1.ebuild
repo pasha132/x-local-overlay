@@ -8,18 +8,20 @@ HOMEPAGE="https://kde.org/"
 
 LICENSE="metapackage"
 SLOT="5"
-KEYWORDS="~amd64 ~arm64 ~x86"
+KEYWORDS="~amd64 ~arm64 ~ppc64 ~x86"
 IUSE="dropbox +webengine"
 
 RDEPEND="
 	>=kde-apps/kdenetwork-filesharing-${PV}:${SLOT}
 
-	>=kde-apps/krdc-${PV}:${SLOT}
 
+	>=kde-apps/krdc-${PV}:${SLOT}
 
 	>=kde-apps/zeroconf-ioslave-${PV}:${SLOT}
 
-
 	dropbox? ( >=kde-apps/dolphin-plugins-dropbox-${PV}:${SLOT} )
-	webengine? ( >=kde-apps/plasma-telepathy-meta-${PV}:${SLOT} )
+	webengine? (
+		>=kde-apps/plasma-telepathy-meta-${PV}:${SLOT}
+		>=kde-misc/kio-gdrive-${PV}:${SLOT}
+	)
 "
