@@ -9,7 +9,7 @@ HOMEPAGE="https://kde.org/"
 LICENSE="metapackage"
 SLOT="5"
 KEYWORDS="~amd64 ~arm64 ~ppc64 ~x86"
-IUSE="dropbox +webengine"
+IUSE="+bittorrent dropbox +webengine"
 
 RDEPEND="
 	>=kde-apps/kdenetwork-filesharing-${PV}:${SLOT}
@@ -20,6 +20,11 @@ RDEPEND="
 	>=kde-apps/zeroconf-ioslave-${PV}:${SLOT}
 
 
+
+	bittorrent? (
+		>=net-libs/libktorrent-${PV}:${SLOT}
+		>=net-p2p/ktorrent-${PV}:${SLOT}
+	)
 	dropbox? ( >=kde-apps/dolphin-plugins-dropbox-${PV}:${SLOT} )
 	webengine? ( >=kde-apps/plasma-telepathy-meta-${PV}:${SLOT} )
 "
