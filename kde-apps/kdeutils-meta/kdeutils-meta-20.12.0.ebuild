@@ -4,7 +4,7 @@
 EAPI=7
 
 DESCRIPTION="kdeutils - merge this to pull in all kdeutils-derived packages"
-HOMEPAGE="https://kde.org/applications/utilities https://utils.kde.org"
+HOMEPAGE="https://apps.kde.org/utilities https://utils.kde.org"
 
 LICENSE="metapackage"
 SLOT="5"
@@ -25,6 +25,9 @@ RDEPEND="
 	>=kde-apps/ktimer-${PV}:${SLOT}
 	>=kde-apps/kwalletmanager-${PV}:${SLOT}
 	>=kde-apps/sweeper-${PV}:${SLOT}
+
+	>=kde-misc/markdownpart-${PV}:${SLOT}
+
 
 	cups? ( >=kde-apps/print-manager-${PV}:${SLOT} )
 	floppy? ( >=kde-apps/kfloppy-${PV}:${SLOT} )
