@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -9,7 +9,7 @@ HOMEPAGE="https://kde.org/"
 LICENSE="metapackage"
 SLOT="5"
 KEYWORDS="~amd64 ~arm64 ~ppc64 ~x86"
-IUSE="dropbox +webengine"
+IUSE="+bittorrent dropbox +webengine"
 
 RDEPEND="
 	>=kde-apps/kdenetwork-filesharing-${PV}:${SLOT}
@@ -19,9 +19,12 @@ RDEPEND="
 
 	>=kde-apps/zeroconf-ioslave-${PV}:${SLOT}
 
-	dropbox? ( >=kde-apps/dolphin-plugins-dropbox-${PV}:${SLOT} )
-	webengine? (
-		>=kde-apps/plasma-telepathy-meta-${PV}:${SLOT}
-		>=kde-misc/kio-gdrive-${PV}:${SLOT}
+
+
+	bittorrent? (
+		>=net-libs/libktorrent-${PV}:${SLOT}
+		>=net-p2p/ktorrent-${PV}:${SLOT}
 	)
+	dropbox? ( >=kde-apps/dolphin-plugins-dropbox-${PV}:${SLOT} )
+	webengine? ( >=kde-apps/plasma-telepathy-meta-${PV}:${SLOT} )
 "
