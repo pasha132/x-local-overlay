@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -25,6 +25,9 @@ RDEPEND="
 	>=kde-apps/ktimer-${PV}:${SLOT}
 	>=kde-apps/kwalletmanager-${PV}:${SLOT}
 	>=kde-apps/sweeper-${PV}:${SLOT}
+
+	>=kde-misc/markdownpart-${PV}:${SLOT}
+
 
 	cups? ( >=kde-apps/print-manager-${PV}:${SLOT} )
 	floppy? ( >=kde-apps/kfloppy-${PV}:${SLOT} )
