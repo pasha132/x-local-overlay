@@ -1,7 +1,7 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 DESCRIPTION="kdegraphics - merge this to pull in all kdegraphics-derived packages"
 HOMEPAGE="https://apps.kde.org/graphics/"
@@ -26,5 +26,8 @@ RDEPEND="
 	>=kde-apps/spectacle-${PV}:${SLOT}
 	>=kde-apps/svgpart-${PV}:${SLOT}
 	>=kde-apps/thumbnailers-${PV}:${SLOT}
-	scanner? ( >=kde-apps/libksane-${PV}:${SLOT} )
+	scanner? (
+		>=kde-apps/libksane-${PV}:${SLOT}
+		>=kde-misc/skanlite-${PV}:${SLOT}
+	)
 "
