@@ -1,10 +1,12 @@
 # Copyright 1999-2019 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 PLOCALES="cs de el eu fr hu_HU it lt nb_NO nl_NL pl_PL ro ru uk_UA uz@Latn"
-inherit cmake-utils l10n xdg-utils gnome2-utils
+PLOCALE_BACKUP="en"
+
+inherit plocale cmake xdg
 
 MY_PN="boomaga"
 MY_P="${MY_PN}-${PV}"
@@ -29,27 +31,19 @@ DEPEND="${RDEPEND}
 S="${WORKDIR}/${MY_P}"
 
 src_prepare() {
-	cmake-utils_src_prepare
-
-	l10n_find_plocales_changes "${S}/src/${PN}/translations" "${PN}_" '.ts'
-
-    rm_ts() {
-            rm "${S}/src/${PN}/translations/${PN}_${1}.ts"
-            rm -f "${S}/src/${PN}/translations/${PN}_${1}.desktop"
-    }
-
-    l10n_for_each_disabled_locale_do rm_ts
+	plocale_find_changes "${S}/src/${PN}/translations" "${PN}_" '.ts'
+	cmake_src_prepare
 }
 
 pkg_postinst() {
 	xdg_desktop_database_update
 	xdg_mimeinfo_database_update
-	gnome2_icon_cache_update
+	xdg_icon_cache_update
 }
 
 pkg_postrm() {
 	xdg_desktop_database_update
 	xdg_mimeinfo_database_update
-	gnome2_icon_cache_update
+	xdg_icon_cache_update
 }
 
