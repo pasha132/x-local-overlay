@@ -14,21 +14,13 @@ IUSE="7zip cups floppy gpg lrz rar +webengine"
 RDEPEND="
 	>=app-cdr/dolphin-plugins-mountiso-${PV}:${SLOT}
 	>=kde-apps/ark-${PV}:${SLOT}
-
 	>=kde-apps/kate-${PV}:${SLOT}
-
 	>=kde-apps/kcalc-${PV}:${SLOT}
-
 	>=kde-apps/kdebugsettings-${PV}:${SLOT}
-
-
 	>=kde-apps/ktimer-${PV}:${SLOT}
 	>=kde-apps/kwalletmanager-${PV}:${SLOT}
 	>=kde-apps/sweeper-${PV}:${SLOT}
-
 	>=kde-misc/markdownpart-${PV}:${SLOT}
-
-
 	cups? ( >=kde-apps/print-manager-${PV}:${SLOT} )
 	floppy? ( >=kde-apps/kfloppy-${PV}:${SLOT} )
 	gpg? ( >=kde-apps/kgpg-${PV}:${SLOT} )

@@ -8,20 +8,13 @@ HOMEPAGE="https://apps.kde.org/graphics/"
 
 LICENSE="metapackage"
 SLOT="5"
-KEYWORDS="~amd64 ~arm64 ~ppc64 ~x86"
+KEYWORDS="~amd64 ~arm64 ~ppc64 ~riscv ~x86"
 IUSE="scanner"
 
 RDEPEND="
 	>=kde-apps/gwenview-${PV}:${SLOT}
-
-
-
-
-
-
 	>=kde-apps/libkdcraw-${PV}:${SLOT}
 	>=kde-apps/libkexiv2-${PV}:${SLOT}
-	>=kde-apps/libkipi-${PV}:${SLOT}
 	>=kde-apps/okular-${PV}:${SLOT}
 	>=kde-apps/spectacle-${PV}:${SLOT}
 	>=kde-apps/svgpart-${PV}:${SLOT}

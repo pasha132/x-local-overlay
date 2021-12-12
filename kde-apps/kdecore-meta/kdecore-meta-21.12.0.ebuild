@@ -13,11 +13,7 @@ IUSE="+handbook +share +thumbnail +webengine"
 
 RDEPEND="
 	>=kde-apps/dolphin-${PV}:${SLOT}
-
-
-
 	>=kde-apps/konsole-${PV}:${SLOT}
-
 	handbook? ( >=kde-apps/khelpcenter-${PV}:${SLOT} )
 	webengine? ( || (
 		www-client/falkon
