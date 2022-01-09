@@ -1,4 +1,4 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -12,14 +12,8 @@ KEYWORDS="~amd64 ~arm64 ~ppc64 ~x86"
 IUSE="+bittorrent dropbox samba +webengine"
 
 RDEPEND="
-
-
 	>=kde-apps/krdc-${PV}:${SLOT}
-
 	>=kde-apps/zeroconf-ioslave-${PV}:${SLOT}
-
-
-
 	bittorrent? (
 		>=net-libs/libktorrent-${PV}:${SLOT}
 		>=net-p2p/ktorrent-${PV}:${SLOT}
