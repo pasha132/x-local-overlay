@@ -8,7 +8,7 @@ HOMEPAGE="https://apps.kde.org/graphics/"
 
 LICENSE="metapackage"
 SLOT="5"
-KEYWORDS="~amd64 ~arm64 ~ppc64 ~riscv ~x86"
+KEYWORDS="~amd64 ~arm64 ~riscv ~x86"
 IUSE="scanner"
 
 RDEPEND="
@@ -22,5 +22,6 @@ RDEPEND="
 	scanner? (
 		>=kde-apps/libksane-${PV}:${SLOT}
 		>=kde-misc/skanlite-${PV}:${SLOT}
+		>=media-gfx/skanpage-${PV}:${SLOT}
 	)
 "
