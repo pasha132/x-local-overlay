@@ -8,12 +8,12 @@ HOMEPAGE="https://kde.org/"
 
 LICENSE="metapackage"
 SLOT="5"
-KEYWORDS="~amd64 ~arm64 ~ppc64 ~x86"
+KEYWORDS="amd64 arm64 ~ppc64 ~x86"
 IUSE="+bittorrent dropbox samba webengine"
 
 RDEPEND="
 	>=kde-apps/krdc-${PV}:${SLOT}
-	>=kde-apps/zeroconf-ioslave-${PV}:${SLOT}
+	>=net-misc/kio-zeroconf-${PV}:${SLOT}
 	bittorrent? (
 		>=net-libs/libktorrent-${PV}:${SLOT}
 		>=net-p2p/ktorrent-${PV}:${SLOT}
