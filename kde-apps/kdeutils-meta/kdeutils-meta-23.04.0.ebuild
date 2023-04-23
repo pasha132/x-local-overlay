@@ -24,7 +24,10 @@ RDEPEND="
 	cups? ( >=kde-apps/print-manager-${PV}:${SLOT} )
 	floppy? ( >=kde-apps/kfloppy-${PV}:${SLOT} )
 	gpg? ( >=kde-apps/kgpg-${PV}:${SLOT} )
-	webengine? ( >=kde-apps/kimagemapeditor-${PV}:${SLOT} )
+	webengine? (
+		>=app-editors/ghostwriter-${PV}
+		>=kde-apps/kimagemapeditor-${PV}:${SLOT}
+	)
 "
 # Optional runtime deps: kde-apps/ark
 RDEPEND="${RDEPEND}
