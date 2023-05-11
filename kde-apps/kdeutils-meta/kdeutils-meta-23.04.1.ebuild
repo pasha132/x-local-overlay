@@ -8,7 +8,7 @@ HOMEPAGE="https://apps.kde.org/categories/utilities/"
 
 LICENSE="metapackage"
 SLOT="5"
-KEYWORDS="~amd64 ~arm64 ~loong ~ppc64 ~x86"
+KEYWORDS="~amd64 ~arm64 ~ppc64 ~x86"
 IUSE="7zip cups floppy gpg lrz rar +webengine"
 
 RDEPEND="
@@ -24,7 +24,10 @@ RDEPEND="
 	cups? ( >=kde-apps/print-manager-${PV}:${SLOT} )
 	floppy? ( >=kde-apps/kfloppy-${PV}:${SLOT} )
 	gpg? ( >=kde-apps/kgpg-${PV}:${SLOT} )
-	webengine? ( >=kde-apps/kimagemapeditor-${PV}:${SLOT} )
+	webengine? (
+		>=app-editors/ghostwriter-${PV}
+		>=kde-apps/kimagemapeditor-${PV}:${SLOT}
+	)
 "
 # Optional runtime deps: kde-apps/ark
 RDEPEND="${RDEPEND}
