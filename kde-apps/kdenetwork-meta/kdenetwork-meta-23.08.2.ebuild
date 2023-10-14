@@ -9,7 +9,7 @@ HOMEPAGE="https://apps.kde.org/"
 LICENSE="metapackage"
 SLOT="5"
 KEYWORDS="~amd64 ~arm64 ~ppc64 ~x86"
-IUSE="+bittorrent dropbox samba +webengine"
+IUSE="+bittorrent dropbox samba +screencast +webengine"
 
 RDEPEND="
 	>=kde-apps/krdc-${PV}:${SLOT}
@@ -20,5 +20,6 @@ RDEPEND="
 	)
 	dropbox? ( >=kde-apps/dolphin-plugins-dropbox-${PV}:${SLOT} )
 	samba? ( >=kde-apps/kdenetwork-filesharing-${PV}:${SLOT} )
+	screencast? ( >=kde-apps/krfb-${PV}:${SLOT} )
 	webengine? ( >=kde-misc/kio-gdrive-${PV}:${SLOT} )
 "
