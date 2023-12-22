@@ -21,7 +21,10 @@ RDEPEND="
 	>=kde-apps/kwalletmanager-${PV}:${SLOT}
 	>=kde-apps/sweeper-${PV}:${SLOT}
 	>=kde-misc/markdownpart-${PV}:${SLOT}
-	cups? ( >=kde-plasma/print-manager-${PV}:${SLOT} )
+	cups? ( || (
+		kde-plasma/print-manager:6
+		>=kde-plasma/print-manager-${PV}:5
+	) )
 	gpg? ( >=kde-apps/kgpg-${PV}:${SLOT} )
 	plasma? ( >=kde-misc/kclock-${PV} )
 	webengine? (
