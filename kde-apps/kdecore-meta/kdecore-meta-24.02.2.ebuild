@@ -1,4 +1,4 @@
-# Copyright 1999-2023 Gentoo Authors
+# Copyright 1999-2024 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -7,24 +7,26 @@ DESCRIPTION="kdecore - merge this to pull in the most basic applications"
 HOMEPAGE="https://apps.kde.org/"
 
 LICENSE="metapackage"
-SLOT="5"
-KEYWORDS="~amd64 ~arm64 ~loong ~ppc64 ~x86"
+SLOT="0"
+KEYWORDS="~amd64"
 IUSE="+handbook +share +thumbnail +webengine"
 
 RDEPEND="
-	>=kde-apps/dolphin-${PV}:${SLOT}
-	>=kde-apps/konsole-${PV}:${SLOT}
-	handbook? ( >=kde-apps/khelpcenter-${PV}:${SLOT} )
+	>=kde-apps/dolphin-${PV}:*
+	>=kde-apps/kfind-${PV}:*
+	>=kde-apps/konsole-${PV}:*
+	>=kde-apps/kwrite-${PV}:*
+	handbook? ( >=kde-apps/khelpcenter-${PV}:* )
 	webengine? ( || (
 		>=www-client/falkon-${PV}
-		>=kde-apps/konqueror-${PV}:${SLOT}
+		>=kde-apps/konqueror-${PV}:*
 	) )
 "
 # Optional runtime deps: kde-apps/dolphin
 RDEPEND="${RDEPEND}
-	share? ( kde-frameworks/purpose:${SLOT} )
+	share? ( kde-frameworks/purpose:6 )
 	thumbnail? (
-		>=kde-apps/ffmpegthumbs-${PV}:${SLOT}
-		>=kde-apps/thumbnailers-${PV}:${SLOT}
+		>=kde-apps/ffmpegthumbs-${PV}:*
+		>=kde-apps/thumbnailers-${PV}:*
 	)
 "
