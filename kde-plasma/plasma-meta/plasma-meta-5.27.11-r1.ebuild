@@ -1,4 +1,4 @@
-# Copyright 1999-2023 Gentoo Authors
+# Copyright 1999-2024 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -8,7 +8,7 @@ HOMEPAGE="https://kde.org/plasma-desktop/"
 
 LICENSE="metapackage"
 SLOT="5"
-KEYWORDS="~amd64 ~arm ~arm64 ~loong ~ppc64 ~riscv ~x86"
+KEYWORDS="amd64 ~arm arm64 ~loong ~ppc64 ~riscv x86"
 IUSE="accessibility bluetooth +browser-integration colord +crash-handler crypt
 cups +desktop-portal discover +display-manager +elogind +firewall flatpak grub
 gtk +handbook +kwallet +legacy-systray +networkmanager plymouth pulseaudio +sddm
@@ -60,7 +60,7 @@ RDEPEND="
 	display-manager? (
 		sddm? (
 			>=kde-plasma/sddm-kcm-${PV}:${SLOT}
-			x11-misc/sddm[elogind?,systemd?]
+			<x11-misc/sddm-0.21.0_p20240302[elogind?,systemd?]
 		)
 		!sddm? ( x11-misc/lightdm )
 	)
