@@ -10,7 +10,7 @@ HOMEPAGE="https://kde.org/plasma-desktop/"
 
 LICENSE="metapackage"
 SLOT="6"
-KEYWORDS="~amd64"
+KEYWORDS="~amd64 ~arm64 ~ppc64 ~riscv ~x86"
 IUSE="accessibility bluetooth +browser-integration colord +crash-handler crypt
 cups discover +display-manager +elogind +firewall flatpak grub gtk +kwallet
 +networkmanager oxygen-theme plymouth pulseaudio qt5 rdp +sddm sdk +smart systemd
@@ -20,6 +20,7 @@ REQUIRED_USE="^^ ( elogind systemd )"
 
 RDEPEND="
 	!${CATEGORY}/${PN}:5
+	!kde-plasma/khotkeys:5
 	>=kde-plasma/breeze-${PV}:${SLOT}[qt5?]
 	>=kde-plasma/kactivitymanagerd-${PV}:${SLOT}
 	>=kde-plasma/kde-cli-tools-${PV}:${SLOT}
@@ -78,6 +79,7 @@ RDEPEND="
 	gtk? (
 		>=kde-plasma/breeze-gtk-${PV}:${SLOT}
 		>=kde-plasma/kde-gtk-config-${PV}:${SLOT}
+		sys-apps/xdg-desktop-portal-gtk
 		x11-misc/appmenu-gtk-module
 	)
 	kwallet? ( >=kde-plasma/kwallet-pam-${PV}:${SLOT} )
@@ -106,7 +108,6 @@ RDEPEND="
 	thunderbolt? ( >=kde-plasma/plasma-thunderbolt-${PV}:${SLOT} )
 	!unsupported? (
 		!gui-apps/qt6ct
-		!sys-apps/xdg-desktop-portal-gnome
 	)
 	wacom? ( >=kde-plasma/wacomtablet-${PV}:${SLOT} )
 	wallpapers? ( >=kde-plasma/plasma-workspace-wallpapers-${PV}:${SLOT} )
@@ -127,7 +128,8 @@ pkg_postinst() {
 		ewarn ""
 		ewarn "A possible (no warranty!) workaround is building sys-libs/libcxx and"
 		ewarn "sys-libs/libcxxabi with the following in package.env:"
-		ewarn " MYCMAKEARGS=\"-DLIBCXX_TYPEINFO_COMPARISON_IMPLEMENTATION=1\""
+		ewarn " MYCMAKEARGS=\"-DLIBCXX_TYPEINFO_COMPARISON_IMPLEMENTATION=2\""
+		ewarn "You may then need to rebuild dev-qt/* and kde-*/*."
 	fi
 
 	if ! use qt5 && has_version dev-qt/qtgui; then
