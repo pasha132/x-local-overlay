@@ -10,7 +10,7 @@ HOMEPAGE="https://kde.org/plasma-desktop/"
 
 LICENSE="metapackage"
 SLOT="6"
-KEYWORDS="~amd64 ~arm64 ~ppc64 ~riscv ~x86"
+KEYWORDS="amd64 arm64 ~ppc64 ~riscv ~x86"
 IUSE="accessibility bluetooth +browser-integration colord +crash-handler crypt
 cups discover +display-manager +elogind +firewall flatpak grub gtk +kwallet
 +networkmanager oxygen-theme plymouth pulseaudio qt5 rdp +sddm sdk +smart systemd
@@ -69,7 +69,7 @@ RDEPEND="
 	display-manager? (
 		sddm? (
 			>=kde-plasma/sddm-kcm-${PV}:${SLOT}
-			>=x11-misc/sddm-0.21.0_p20240302[elogind?,systemd?]
+			>=x11-misc/sddm-0.21.0_p20240723-r10[elogind?,systemd?]
 		)
 		!sddm? ( x11-misc/lightdm )
 	)
