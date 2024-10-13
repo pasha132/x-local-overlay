@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit go-module
+inherit go-module shell-completion
 
 DESCRIPTION="Manage your dotfiles across multiple machines, securely"
 HOMEPAGE="https://www.chezmoi.io https://github.com/twpayne/chezmoi"
@@ -16,6 +16,7 @@ LICENSE="BSD BSD-2 MIT Apache-2.0 MPL-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 IUSE="bash-completion"
+RESTRICT="mirror"
 
 RDEPEND=""
 BDEPEND="
@@ -24,7 +25,6 @@ BDEPEND="
 		>=app-shells/bash-completion-2.0
 	)
 "
-
 
 DOCS=( README.md )
 
