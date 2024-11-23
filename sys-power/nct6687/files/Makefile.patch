@@ -1,23 +1,29 @@
 diff --git a/Makefile b/Makefile
-index 5bc7917..11faf40 100644
+index 5bc7917..e133cb7 100644
 --- a/Makefile
 +++ b/Makefile
-@@ -1,78 +1,16 @@
+@@ -1,78 +1,26 @@
 -obj-m += nct6687.o
-+ifneq ($(KERNELRELEASE),)
-+# kbuild part of makefile
-+obj-m  := nct6687.o
++MOD 				:= nct6687
++TARGET				:= $(shell uname -r)
++KERNEL_MODULES			:= /lib/modules/$(TARGET)
  
 -curpwd      := $(shell pwd)
 -kver        := $(shell uname -r)
 -commitcount := $(shell git rev-list --all --count)
 -commithash  := $(shell git rev-parse --short HEAD)
 -fedoraver := $(shell sed -n 's/.*Fedora release \([^ ]*\).*/\1/p' /etc/fedora-release)
++ifneq ("","$(wildcard /usr/src/linux-headers-$(TARGET)/*)")
++	KERNEL_BUILD		:= /usr/src/linux-headers-$(TARGET)
 +else
-+# normal makefile
-+KDIR ?= /lib/modules/`uname -r`/build
++ifneq ("","$(wildcard /usr/src/kernels/$(TARGET)/*)")
++	KERNEL_BUILD		:= /usr/src/kernels/$(TARGET)
++else
++	KERNEL_BUILD		:= $(KERNEL_MODULES)/build
++endif
++endif
  
-+modules:
++obj-m				:= $(MOD).o
  
 -build:
 -	rm -rf ${curpwd}/${kver}
@@ -31,11 +37,8 @@ index 5bc7917..11faf40 100644
 -	sudo modprobe nct6687
 -clean:
 -	[ -d "${curpwd}/${kver}" ] && make -C /lib/modules/${kver}/build M=${curpwd}/${kver} clean
-+%:
-+	$(MAKE) -C $(KDIR) M=$$PWD $@
- 
-+endif
- 
+-
+-
 -akmod/build:
 -	@if [ $(fedoraver) -gt 40 ]; then \
 -		echo "Fedora version $(fedoraver) is greater than 40, using dnf5 command"; \
@@ -61,11 +64,13 @@ index 5bc7917..11faf40 100644
 -	sudo dnf remove nct6687d
 -	rm -rf .tmp
 -akmod: akmod/install
- 
 -
++.PHONY: all modules clean
+ 
 -dkms/build:
 -	make -C /lib/modules/${kver}/build M=${curpwd} modules
--
++all: modules
+ 
 -dkms/install:
 -	rm -rf ${curpwd}/dkms
 -	mkdir -p ${curpwd}/dkms
@@ -74,7 +79,9 @@ index 5bc7917..11faf40 100644
 -	sudo cp -rT dkms /usr/src/nct6687d-1
 -	sudo dkms install nct6687d/1
 -	sudo modprobe nct6687
--
++modules:
++	@$(MAKE) -C $(KERNEL_BUILD) M=$(CURDIR) modules
+ 
 -dkms/clean:
 -	sudo dkms remove nct6687d/1 --all
 -	make -C /lib/modules/${kver}/build M=${curpwd} clean
@@ -91,3 +98,6 @@ index 5bc7917..11faf40 100644
 -
 -.PHONY: FORCE
 -FORCE:
++clean:
++	@$(MAKE) -C $(KERNEL_BUILD) M=$(CURDIR) clean
++	rm -rf *.o
