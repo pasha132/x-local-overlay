@@ -16,7 +16,6 @@ RDEPEND="
 	>=kde-apps/akonadi-calendar-${PV}:*
 	>=kde-apps/akonadi-contacts-${PV}:*
 	>=kde-apps/akonadi-mime-${PV}:*
-	>=kde-apps/akonadi-notes-${PV}:*
 	>=kde-apps/akonadi-search-${PV}:*
 	>=kde-apps/grantleetheme-${PV}:*
 	>=kde-apps/kcalutils-${PV}:*
