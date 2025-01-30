@@ -1,0 +1,11 @@
+http:
+  address: 0.0.0.0:8080
+  session_ttl: 720h
+clients:
+  persistent: []
+  runtime_sources:
+    arp: true
+    dhcp: true
+    hosts: true
+    rdns: false
+    whois: true

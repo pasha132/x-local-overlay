@@ -1,0 +1,26 @@
+#!/sbin/openrc-run
+# Copyright 1999-2022 Gentoo Authors
+# Distributed under the terms of the GNU General Public License v2
+
+ADGUARDHOME_WORKDIR=${ADGUARDHOME_WORKDIR:-/var/lib/AdGuardHome/}
+ADGUARDHOME_LOGFILE=${ADGUARDHOME_LOGFILE:-/var/log/AdGuardHome/adguardhome.log}
+ADGUARDHOME_UMASK=${ADGUARDHOME_UMASK:-007}
+
+description="Privacy protection center for you and your devices"
+command="/usr/bin/AdGuardHome"
+command_args="--no-check-update --config /etc/AdGuardHome/AdGuardHome.yaml --work-dir ${ADGUARDHOME_WORKDIR} --pidfile /run/${RC_SVCNAME}.pid"
+pidfile="/run/${RC_SVCNAME}.pid"
+command_background="yes"
+
+umask="${ADGUARDHOME_UMASK}"
+output_log="\"${ADGUARDHOME_LOGFILE}\""
+error_log="\"${ADGUARDHOME_LOGFILE}\""
+
+depend() {
+  need localmount net
+}
+
+start_pre() {
+  checkpath -q -d ${ADGUARDHOME_WORKDIR}
+  checkpath -q -f ${ADGUARDHOME_LOGFILE}
+}
