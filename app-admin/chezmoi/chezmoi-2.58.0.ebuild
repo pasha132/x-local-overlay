@@ -8,7 +8,7 @@ inherit go-module shell-completion
 DESCRIPTION="Manage your dotfiles across multiple machines, securely"
 HOMEPAGE="https://www.chezmoi.io https://github.com/twpayne/chezmoi"
 SRC_URI="https://github.com/twpayne/${PN}/archive/refs/tags/v${PV}.tar.gz -> ${P}.tar.gz"
-SRC_URI+=" https://marinka.name/distfiles/${CATEGORY}/chezmoi-${PV}-vendor.tar.xz -> ${P}-vendor.tar.xz"
+SRC_URI+=" https://github.com/pasha132/x-local-overlay-vendored/releases/download/v0.0.0/chezmoi-${PV}-vendor.tar.xz -> ${P}-vendor.tar.xz"
 
 S="${WORKDIR}"/chezmoi-${PV}
 
