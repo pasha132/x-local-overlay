@@ -14,7 +14,7 @@ KEYWORDS="~amd64 ~arm64 ~loong ~ppc64 ~riscv ~x86"
 IUSE="accessibility bluetooth +browser-integration colord +crash-handler crypt
 cups discover +display-manager +elogind +firewall flatpak grub gtk +kwallet
 +networkmanager oxygen-theme plymouth pulseaudio qt5 rdp +sddm sdk +smart systemd
-thunderbolt unsupported wacom +wallpapers webengine +xwayland"
+thunderbolt unsupported wacom +wallpapers webengine"
 
 REQUIRED_USE="^^ ( elogind systemd )"
 
@@ -28,6 +28,7 @@ RDEPEND="
 	>=kde-plasma/kdecoration-${PV}:${SLOT}
 	>=kde-plasma/kdeplasma-addons-${PV}:${SLOT}
 	>=kde-plasma/kdesu-gui-${PV}
+	>=kde-plasma/keditfiletype-${PV}
 	>=kde-plasma/kgamma-${PV}:${SLOT}
 	>=kde-plasma/kglobalacceld-${PV}:${SLOT}
 	>=kde-plasma/kinfocenter-${PV}:${SLOT}
@@ -118,7 +119,6 @@ RDEPEND="
 	wacom? ( >=kde-plasma/wacomtablet-${PV}:${SLOT} )
 	wallpapers? ( >=kde-plasma/plasma-workspace-wallpapers-${PV}:${SLOT} )
 	webengine? ( kde-apps/khelpcenter:6 )
-	xwayland? ( >=gui-apps/xwaylandvideobridge-0.4.0 )
 "
 # Optional runtime deps: kde-plasma/plasma-desktop
 RDEPEND="${RDEPEND}
