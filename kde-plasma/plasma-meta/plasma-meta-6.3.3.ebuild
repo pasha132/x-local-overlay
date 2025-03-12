@@ -14,13 +14,14 @@ KEYWORDS="~amd64 ~arm64 ~loong ~ppc64 ~riscv ~x86"
 IUSE="accessibility bluetooth +browser-integration colord +crash-handler crypt
 cups discover +display-manager +elogind +firewall flatpak grub gtk +kwallet
 +networkmanager oxygen-theme plymouth pulseaudio qt5 rdp +sddm sdk +smart systemd
-thunderbolt unsupported wacom +wallpapers webengine +xwayland"
+thunderbolt unsupported wacom +wallpapers webengine"
 
 REQUIRED_USE="^^ ( elogind systemd )"
 
 RDEPEND="
 	!${CATEGORY}/${PN}:5
 	!kde-plasma/khotkeys:5
+	>=kde-plasma/aurorae-${PV}:${SLOT}
 	>=kde-plasma/breeze-${PV}:${SLOT}[qt5?]
 	>=kde-plasma/kactivitymanagerd-${PV}:${SLOT}
 	>=kde-plasma/kde-cli-tools-${PV}:${SLOT}
@@ -58,6 +59,7 @@ RDEPEND="
 	>=kde-plasma/polkit-kde-agent-${PV}:*
 	>=kde-plasma/powerdevil-${PV}:${SLOT}
 	>=kde-plasma/qqc2-breeze-style-${PV}:${SLOT}
+	>=kde-apps/spectacle-${PV}:${SLOT}
 	>=kde-plasma/systemsettings-${PV}:${SLOT}
 	>=kde-plasma/xdg-desktop-portal-kde-${PV}:${SLOT}
 	sys-apps/dbus[elogind?,systemd?]
@@ -119,7 +121,6 @@ RDEPEND="
 	wacom? ( >=kde-plasma/wacomtablet-${PV}:${SLOT} )
 	wallpapers? ( >=kde-plasma/plasma-workspace-wallpapers-${PV}:${SLOT} )
 	webengine? ( kde-apps/khelpcenter:6 )
-	xwayland? ( >=gui-apps/xwaylandvideobridge-0.4.0 )
 "
 # Optional runtime deps: kde-plasma/plasma-desktop
 RDEPEND="${RDEPEND}
