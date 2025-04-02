@@ -21,6 +21,7 @@ REQUIRED_USE="^^ ( elogind systemd )"
 RDEPEND="
 	!${CATEGORY}/${PN}:5
 	!kde-plasma/khotkeys:5
+	>=kde-plasma/aurorae-${PV}:${SLOT}
 	>=kde-plasma/breeze-${PV}:${SLOT}[qt5?]
 	>=kde-plasma/kactivitymanagerd-${PV}:${SLOT}
 	>=kde-plasma/kde-cli-tools-${PV}:${SLOT}
@@ -58,6 +59,7 @@ RDEPEND="
 	>=kde-plasma/polkit-kde-agent-${PV}:*
 	>=kde-plasma/powerdevil-${PV}:${SLOT}
 	>=kde-plasma/qqc2-breeze-style-${PV}:${SLOT}
+	=kde-plasma/spectacle-6.3*:${SLOT}
 	>=kde-plasma/systemsettings-${PV}:${SLOT}
 	>=kde-plasma/xdg-desktop-portal-kde-${PV}:${SLOT}
 	sys-apps/dbus[elogind?,systemd?]
@@ -129,11 +131,11 @@ pkg_postinst() {
 	if [[ $(tc-get-cxx-stdlib) == "libc++" ]] ; then
 		# Workaround for bug #923292 (KDE-bug 479679)
 		ewarn "plasmashell and other KDE Plasma components are known to misbehave"
-		ewarn "when built with sys-libs/libcxx, e.g. crashing when right-clicking"
+		ewarn "when built with llvm-runtimes/libcxx, e.g. crashing when right-clicking"
 		ewarn "on a panel. See bug #923292."
 		ewarn ""
-		ewarn "A possible (no warranty!) workaround is building sys-libs/libcxx and"
-		ewarn "sys-libs/libcxxabi with the following in package.env:"
+		ewarn "A possible (no warranty!) workaround is building llvm-runtimes/libcxx and"
+		ewarn "llvm-runtimes/libcxxabi with the following in package.env:"
 		ewarn " MYCMAKEARGS=\"-DLIBCXX_TYPEINFO_COMPARISON_IMPLEMENTATION=2\""
 		ewarn "You may then need to rebuild dev-qt/* and kde-*/*."
 	fi
