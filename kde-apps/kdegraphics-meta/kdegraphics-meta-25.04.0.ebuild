@@ -8,8 +8,8 @@ HOMEPAGE="https://apps.kde.org/graphics/"
 
 LICENSE="metapackage"
 SLOT="0"
-KEYWORDS="amd64 arm64 ~loong ~ppc64 ~riscv ~x86"
-IUSE="color-management scanner +screencast +webengine"
+KEYWORDS="~amd64"
+IUSE="color-management scanner +webengine"
 
 RDEPEND="
 	>=kde-apps/gwenview-${PV}:*
@@ -24,5 +24,4 @@ RDEPEND="
 		>=kde-misc/skanlite-${PV}:*
 		webengine? ( >=media-gfx/skanpage-${PV}:* )
 	)
-	screencast? ( kde-plasma/spectacle:* )
 "
