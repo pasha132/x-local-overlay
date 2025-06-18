@@ -10,13 +10,13 @@ HOMEPAGE="https://kde.org/plasma-desktop/"
 
 LICENSE="metapackage"
 SLOT="6"
-KEYWORDS="amd64 arm64 ~loong ~ppc64 ~riscv ~x86"
-IUSE="accessibility bluetooth +browser-integration colord +crash-handler crypt
-cups discover +display-manager +elogind +firewall flatpak grub gtk +kwallet
+KEYWORDS="~amd64 ~arm64 ~loong ~ppc64 ~riscv ~x86"
+IUSE="accessibility bluetooth +browser-integration +crash-handler crypt cups
+discover +display-manager +elogind +firewall flatpak grub gtk +kwallet
 +networkmanager oxygen-theme plymouth pulseaudio qt5 rdp +sddm sdk +smart systemd
-thunderbolt unsupported wacom +wallpapers webengine"
+thunderbolt unsupported wacom +wallpapers webengine X"
 
-REQUIRED_USE="^^ ( elogind systemd )"
+REQUIRED_USE="^^ ( elogind systemd ) firewall? ( systemd )"
 
 RDEPEND="
 	!${CATEGORY}/${PN}:5
@@ -52,9 +52,9 @@ RDEPEND="
 	>=kde-plasma/plasma-activities-stats-${PV}:${SLOT}
 	>=kde-plasma/plasma-desktop-${PV}:${SLOT}
 	>=kde-plasma/plasma-integration-${PV}:${SLOT}[qt5?]
-	>=kde-plasma/plasma-login-sessions-${PV}:${SLOT}
+	>=kde-plasma/plasma-login-sessions-${PV}:${SLOT}[X?]
 	>=kde-plasma/plasma-systemmonitor-${PV}:${SLOT}
-	>=kde-plasma/plasma-workspace-${PV}:${SLOT}
+	>=kde-plasma/plasma-workspace-${PV}:${SLOT}[X?]
 	>=kde-plasma/plasma5support-${PV}:${SLOT}
 	>=kde-plasma/polkit-kde-agent-${PV}:*
 	>=kde-plasma/powerdevil-${PV}:${SLOT}
@@ -66,8 +66,10 @@ RDEPEND="
 	sys-fs/udisks:2[elogind?,systemd?]
 	bluetooth? ( >=kde-plasma/bluedevil-${PV}:${SLOT} )
 	browser-integration? ( >=kde-plasma/plasma-browser-integration-${PV}:${SLOT} )
-	colord? ( x11-misc/colord )
-	crash-handler? ( ~kde-plasma/drkonqi-${PV}:${SLOT} )
+	crash-handler? ( || (
+		=kde-plasma/drkonqi-6.3.80*:${SLOT}
+		>=kde-plasma/drkonqi-${PV}:${SLOT}
+	) )
 	crypt? ( >=kde-plasma/plasma-vault-${PV}:${SLOT} )
 	cups? (
 		>=kde-plasma/print-manager-${PV}:${SLOT}
@@ -77,7 +79,7 @@ RDEPEND="
 	display-manager? (
 		sddm? (
 			>=kde-plasma/sddm-kcm-${PV}:${SLOT}
-			>=x11-misc/sddm-0.21.0_p20240302[elogind?,systemd?]
+			>=x11-misc/sddm-0.21.0_p20240302[elogind?,systemd?,X?]
 		)
 		!sddm? ( x11-misc/lightdm )
 	)
@@ -110,16 +112,18 @@ RDEPEND="
 	sdk? ( >=kde-plasma/plasma-sdk-${PV}:${SLOT} )
 	smart? ( >=kde-plasma/plasma-disks-${PV}:${SLOT} )
 	systemd? (
-		sys-apps/systemd[pam]
+		>=sys-apps/systemd-257[pam]
 		firewall? ( >=kde-plasma/plasma-firewall-${PV}:${SLOT} )
 	)
 	thunderbolt? ( >=kde-plasma/plasma-thunderbolt-${PV}:${SLOT} )
-	!unsupported? (
-		!gui-apps/qt6ct
+	!unsupported? ( !gui-apps/qt6ct )
+	wacom? (
+		>=kde-plasma/plasma-desktop-${PV}:${SLOT}[input_devices_wacom]
+		X? ( >=kde-plasma/wacomtablet-${PV}:${SLOT} )
 	)
-	wacom? ( >=kde-plasma/wacomtablet-${PV}:${SLOT} )
 	wallpapers? ( >=kde-plasma/plasma-workspace-wallpapers-${PV}:${SLOT} )
 	webengine? ( kde-apps/khelpcenter:6 )
+	X? ( >=kde-plasma/kwin-x11-${PV}:${SLOT}[lock] )
 "
 # NOTE spectacle moved from KDE Gear (yy.mm) to KDE Plasma version scheme
 case ${PV} in
