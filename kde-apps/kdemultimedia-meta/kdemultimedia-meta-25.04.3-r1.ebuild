@@ -8,8 +8,8 @@ HOMEPAGE="https://apps.kde.org/categories/multimedia/"
 
 LICENSE="metapackage"
 SLOT="0"
-KEYWORDS="~amd64 ~arm64 ~riscv ~x86"
-IUSE="+cdrom +ffmpeg gstreamer qt5"
+KEYWORDS="~amd64 ~arm64 ~ppc64 ~riscv"
+IUSE="+cdrom +ffmpeg gstreamer"
 
 RDEPEND="
 	>=kde-apps/kdenlive-${PV}:*
@@ -21,5 +21,5 @@ RDEPEND="
 		>=kde-apps/libkcompactdisc-${PV}:*
 	)
 	ffmpeg? ( >=kde-apps/ffmpegthumbs-${PV}:* )
-	gstreamer? ( qt5? ( >=kde-apps/kamoso-25.04.0:* ) )
+	gstreamer? ( >=kde-apps/kamoso-25.07.70:* )
 "
