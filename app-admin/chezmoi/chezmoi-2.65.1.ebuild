@@ -20,7 +20,7 @@ RESTRICT="mirror"
 
 RDEPEND=""
 BDEPEND="
-	>=dev-lang/go-1.21.0
+	>=dev-lang/go-1.25.0
 	bash-completion? (
 		>=app-shells/bash-completion-2.0
 	)
