@@ -10,7 +10,7 @@ HOMEPAGE="https://kde.org/plasma-desktop/"
 
 LICENSE="metapackage"
 SLOT="6"
-KEYWORDS="~amd64 ~arm64 ~loong ~ppc64 ~riscv ~x86"
+KEYWORDS="~amd64"
 IUSE="accessibility bluetooth +browser-integration +crash-handler crypt cups
 discover +display-manager +elogind +firewall flatpak grub gtk +kwallet
 +networkmanager oxygen-theme plymouth pulseaudio qt5 rdp +sddm sdk +smart systemd
@@ -34,6 +34,7 @@ RDEPEND="
 	>=kde-plasma/kglobalacceld-${PV}:${SLOT}
 	>=kde-plasma/kinfocenter-${PV}:${SLOT}
 	>=kde-plasma/kmenuedit-${PV}:${SLOT}
+	>=kde-plasma/knighttime-${PV}:${SLOT}
 	>=kde-plasma/kpipewire-${PV}:${SLOT}
 	>=kde-plasma/kscreen-${PV}:${SLOT}
 	>=kde-plasma/kscreenlocker-${PV}:${SLOT}
@@ -79,7 +80,7 @@ RDEPEND="
 	display-manager? (
 		sddm? (
 			>=kde-plasma/sddm-kcm-${PV}:${SLOT}
-			>=x11-misc/sddm-0.21.0_p20240302[elogind?,systemd?,X?]
+			>=x11-misc/sddm-0.21.0_p20240302[elogind?,systemd?]
 		)
 		!sddm? ( x11-misc/lightdm )
 	)
@@ -126,6 +127,7 @@ RDEPEND="
 	X? ( >=kde-plasma/kwin-x11-${PV}:${SLOT}[lock] )
 "
 # NOTE spectacle moved from KDE Gear (yy.mm) to KDE Plasma version scheme
+# TODO drop after 2027-04-26
 case ${PV} in
 	*9999) RDEPEND+=" ~kde-plasma/spectacle-${PV}:${SLOT}" ;;
 	*)
