@@ -12,12 +12,9 @@ KEYWORDS="~amd64 ~arm64"
 IUSE="bogofilter clamav spamassassin"
 
 RDEPEND="
-	>=app-office/merkuro-${PV}:*
 	>=kde-apps/akonadi-${PV}:*
-	>=kde-apps/akonadiconsole-${PV}:*
 	>=kde-apps/akonadi-calendar-${PV}:*
 	>=kde-apps/akonadi-contacts-${PV}:*
-	>=kde-apps/akonadi-import-wizard-${PV}:*
 	>=kde-apps/akonadi-mime-${PV}:*
 	>=kde-apps/akonadi-search-${PV}:*
 	>=kde-apps/grantleetheme-${PV}:*
