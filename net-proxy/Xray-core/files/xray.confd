@@ -1,0 +1,21 @@
+# /etc/conf.d/xray: config file for /etc/init.d/xray
+
+# umask used to create files
+# The default allows group access
+#XRAY_CORE_UMASK=007
+
+# Nice level of xray
+#SSD_NICELEVEL=0
+
+# I/O nice level of xray
+#SSD_IONICELEVEL=0
+
+# User and group as which to run
+#XRAY_CORE_USER=xray
+#XRAY_CORE_GROUP=xray
+
+# Configuration directory
+#XRAY_CORE_CONFIG_DIR="/etc/xray/"
+
+# Log file location
+#XRAY_CORE_LOGFILE="/var/log/xray/xray.log"
