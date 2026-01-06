@@ -1,0 +1,13 @@
+# /etc/conf.d/tun2socks: config file for /etc/init.d/tun2socks
+
+# Nice level of tun2socks
+#SSD_NICELEVEL=0
+
+# I/O nice level of tun2socks
+#SSD_IONICELEVEL=0
+
+# Log file location
+#TUN2SOCKS_LOGFILE="/var/log/tun2socks/tun2socks.log"
+
+# Extra options for tun2socks
+#TUN2SOCKS_OPTS=""
