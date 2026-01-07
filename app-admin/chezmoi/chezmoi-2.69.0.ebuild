@@ -8,14 +8,14 @@ inherit go-module shell-completion
 DESCRIPTION="Manage your dotfiles across multiple machines, securely"
 HOMEPAGE="https://www.chezmoi.io https://github.com/twpayne/chezmoi"
 SRC_URI="https://github.com/twpayne/${PN}/archive/refs/tags/v${PV}.tar.gz -> ${P}.tar.gz"
-SRC_URI+=" https://github.com/pasha132/x-local-overlay-vendored/releases/download/v0.0.0/chezmoi-${PV}-vendor.tar.xz -> ${P}-vendor.tar.xz"
+SRC_URI+=" https://github.com/pasha132/x-local-overlay-vendored/releases/download/v0.0.0/${PN}-${PV}-vendor.tar.xz -> ${P}-vendor.tar.xz"
 
-S="${WORKDIR}"/chezmoi-${PV}
+S="${WORKDIR}/${PN}-${PV}"
 
 LICENSE="BSD BSD-2 MIT Apache-2.0 MPL-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
-IUSE="bash-completion"
+IUSE="bash-completion debug"
 RESTRICT="mirror"
 
 RDEPEND=""
@@ -29,10 +29,15 @@ BDEPEND="
 DOCS=( README.md )
 
 src_compile() {
-	ego build -mod vendor -o ${PN} -ldflags "-X main.version=${PVR}-gentoo \
-		-X main.date=$(date -u +%Y-%m-%dT%H:%M:%SZ) \
-		-X main.commit= \
-		-X main.builtBy=portage"
+	local -a my_ldflags=(
+		"-X main.version=v${PVR}-gentoo"
+		"-X main.date=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+		"-X main.commit="
+		"-X main.builtBy=portage"
+	)
+	use debug || my_ldflags+=( -s -w )
+
+	ego build -mod vendor -o ${PN} -ldflags "${my_ldflags[*]}"
 }
 
 src_test() {
