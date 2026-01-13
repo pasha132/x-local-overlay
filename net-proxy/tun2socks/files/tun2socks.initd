@@ -1,0 +1,25 @@
+#!/sbin/openrc-run
+
+supervisor=supervise-daemon
+description="tun2socks - powered by gVisor TCP/IP stack"
+
+TUN2SOCKS_LOGFILE=${TUN2SOCKS_LOGFILE:-/var/log/tun2socks/tun2socks.log}
+command="/usr/bin/tun2socks"
+command_args="${TUN2SOCKS_OPTS}"
+
+output_log="\"${TUN2SOCKS_LOGFILE}\""
+error_log="\"${TUN2SOCKS_LOGFILE}\""
+
+# If it's rapidly failing, usually due to XDG_RUNTIME_DIR being unset,
+# we should just quit fast.
+respawn_max=3
+respawn_period=5
+
+depend() {
+	need localmount
+	after net
+}
+
+start_pre() {
+ 	checkpath -q -f ${TUN2SOCKS_LOGFILE}
+}
