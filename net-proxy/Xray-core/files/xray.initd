@@ -1,0 +1,40 @@
+#!/sbin/openrc-run
+
+supervisor=supervise-daemon
+description="xray is a platform for building proxies"
+config="${RC_SVCNAME#*.}"
+
+XRAY_CORE_USER=${XRAY_CORE_USER:-xray}
+XRAY_CORE_GROUP=${XRAY_CORE_GROUP:-xray}
+XRAY_CORE_LOGFILE=${XRAY_CORE_LOGFILE:-/var/log/xray/xray.$config.log}
+XRAY_CORE_UMASK=${XRAY_CORE_UMASK:-007}
+XRAY_CORE_CONFIG_DIR=${XRAY_CORE_CONFIG_DIR:-/etc/xray}
+xray_core_config="${XRAY_CORE_CONFIG_DIR}/$config.json"
+command_user="${XRAY_CORE_USER}:${XRAY_CORE_GROUP}"
+command="/usr/bin/xray"
+command_args="-config ${xray_core_config}"
+
+umask="${XRAY_CORE_UMASK}"
+output_log="\"${XRAY_CORE_LOGFILE}\""
+error_log="\"${XRAY_CORE_LOGFILE}\""
+
+respawn_max=3
+respawn_period=5
+
+depend() {
+	need localmount
+	after net
+}
+
+start_pre() {
+	if [ "$config" = "$RC_SVCNAME" ]; then
+		eerror "${RC_SVCNAME} cannot be started directly. You must create"
+		eerror "symbolic links to it for the configs you want to start"
+		return 1
+	fi
+	if [ ! -f ${xray_core_config} ]; then
+		ewarn "${xray_core_config} does not exist."
+		return 1
+	fi
+ 	checkpath -q -f -o ${XRAY_CORE_USER}:${XRAY_CORE_GROUP} ${XRAY_CORE_LOGFILE}
+}
