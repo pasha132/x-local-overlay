@@ -1,0 +1,6 @@
+/var/log/tun2socks/tun2socks.log {
+    missingok
+    notifempty
+    sharedscripts
+    copytruncate
+}
