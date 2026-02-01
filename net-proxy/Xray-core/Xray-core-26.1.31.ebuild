@@ -24,7 +24,7 @@ RDEPEND="
 	acct-user/xray
 "
 BDEPEND="
-	>=dev-lang/go-1.25.0
+	>=dev-lang/go-1.25.6
 "
 
 DOCS=( README.md )
