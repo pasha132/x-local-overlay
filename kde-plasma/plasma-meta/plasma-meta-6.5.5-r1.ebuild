@@ -10,11 +10,11 @@ HOMEPAGE="https://kde.org/plasma-desktop/"
 
 LICENSE="metapackage"
 SLOT="6"
-KEYWORDS="~amd64 ~arm64 ~loong ~ppc64 ~riscv ~x86"
+KEYWORDS="amd64 arm64 ~loong ~ppc64 ~riscv ~x86"
 IUSE="accessibility bluetooth +browser-integration +crash-handler crypt cups
 discover +display-manager +elogind +firewall flatpak grub gtk +kwallet
 +networkmanager oxygen-theme plymouth pulseaudio qt5 rdp +sddm sdk +smart systemd
-thunderbolt unsupported wacom +wallpapers webengine X"
+thunderbolt unsupported wacom +wallpapers webengine X +xwayland"
 
 REQUIRED_USE="^^ ( elogind systemd ) firewall? ( systemd )"
 
@@ -130,6 +130,7 @@ RDEPEND="
 		>=kde-plasma/kwin-x11-${PV}:${SLOT}[lock]
 		wacom? ( >=kde-plasma/wacomtablet-${PV}:${SLOT} )
 	)
+	xwayland? ( >=gui-apps/xwaylandvideobridge-0.4.0_p20250215-r1 )
 "
 # NOTE spectacle moved from KDE Gear (yy.mm) to KDE Plasma version scheme
 # TODO drop after 2027-04-26
