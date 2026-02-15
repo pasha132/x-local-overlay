@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit go-module shell-completion
+inherit fcaps go-module shell-completion
 
 DESCRIPTION="Xray, Penetrates Everything"
 HOMEPAGE="https://xtls.github.io https://github.com/XTLS/Xray-core"
@@ -24,7 +24,7 @@ RDEPEND="
 	acct-user/xray
 "
 BDEPEND="
-	>=dev-lang/go-1.25.6
+	>=dev-lang/go-1.26.0
 "
 
 DOCS=( README.md )
@@ -57,4 +57,8 @@ src_install() {
 
 	keepdir /etc/"${MY_PN}"
 	keepdir /var/log/"${MY_PN}"
+}
+
+pkg_postinst() {
+	fcaps cap_net_admin usr/bin/${MY_PN}
 }
