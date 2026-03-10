@@ -10,11 +10,11 @@ HOMEPAGE="https://kde.org/plasma-desktop/"
 
 LICENSE="metapackage"
 SLOT="6"
-KEYWORDS="amd64 arm64 ~loong ~ppc64 ~riscv ~x86"
+KEYWORDS="~amd64 ~arm64 ~x86"
 IUSE="accessibility bluetooth +browser-integration +crash-handler crypt cups
 discover +display-manager +elogind +firewall flatpak grub gtk +kwallet
-+networkmanager oxygen-theme plymouth pulseaudio qt5 rdp +sddm sdk +smart systemd
-thunderbolt unsupported wacom +wallpapers webengine X +xwayland"
++networkmanager ocr oxygen-theme plymouth pulseaudio rdp +sddm sdk +smart
+systemd thunderbolt unsupported virtualkeyboard wacom +wallpapers webengine X"
 
 REQUIRED_USE="^^ ( elogind systemd ) firewall? ( systemd )"
 
@@ -22,7 +22,6 @@ RDEPEND="
 	!${CATEGORY}/${PN}:5
 	!kde-plasma/khotkeys:5
 	>=kde-plasma/aurorae-${PV}:${SLOT}
-	>=kde-plasma/breeze-${PV}:${SLOT}
 	>=kde-plasma/kactivitymanagerd-${PV}:${SLOT}
 	>=kde-plasma/kde-cli-tools-${PV}:${SLOT}
 	>=kde-plasma/kde-cli-tools-common-${PV}
@@ -101,18 +100,12 @@ RDEPEND="
 		>=kde-frameworks/oxygen-icons-6.0.0:*
 		>=kde-plasma/oxygen-${PV}:${SLOT}[X?]
 		>=kde-plasma/oxygen-sounds-${PV}:${SLOT}
-		qt5? ( >=kde-plasma/oxygen-6.5.0:5[X?] )
 	)
 	plymouth? (
 		>=kde-plasma/breeze-plymouth-${PV}:${SLOT}
 		>=kde-plasma/plymouth-kcm-${PV}:${SLOT}
 	)
 	pulseaudio? ( >=kde-plasma/plasma-pa-${PV}:${SLOT} )
-	qt5? (
-		>=kde-plasma/breeze-6.5.0:5
-		>=kde-plasma/kwayland-integration-${PV}:5
-		>=kde-plasma/plasma-integration-6.5.0:5
-	)
 	rdp? ( >=kde-plasma/krdp-${PV}:${SLOT} )
 	sdk? ( >=kde-plasma/plasma-sdk-${PV}:${SLOT} )
 	smart? ( >=kde-plasma/plasma-disks-${PV}:${SLOT} )
@@ -122,6 +115,7 @@ RDEPEND="
 	)
 	thunderbolt? ( >=kde-plasma/plasma-thunderbolt-${PV}:${SLOT} )
 	!unsupported? ( !gui-apps/qt6ct )
+	virtualkeyboard? ( >=kde-plasma/plasma-keyboard-${PV}:${SLOT} )
 	wacom? ( >=kde-plasma/plasma-desktop-${PV}:${SLOT}[input_devices_wacom] )
 	wallpapers? ( >=kde-plasma/plasma-workspace-wallpapers-${PV}:${SLOT} )
 	webengine? ( kde-apps/khelpcenter:6 )
@@ -130,7 +124,6 @@ RDEPEND="
 		>=kde-plasma/kwin-x11-${PV}:${SLOT}[lock]
 		wacom? ( >=kde-plasma/wacomtablet-${PV}:${SLOT} )
 	)
-	xwayland? ( >=gui-apps/xwaylandvideobridge-0.4.0_p20250215-r1 )
 "
 # NOTE spectacle moved from KDE Gear (yy.mm) to KDE Plasma version scheme
 # TODO drop after 2027-04-26
@@ -143,9 +136,10 @@ case ${PV} in
 		"
 		;;
 esac
-# Optional runtime deps: kde-plasma/plasma-desktop
+# Optional runtime deps: kde-plasma/plasma-desktop, kde-plasma/spectacle
 RDEPEND="${RDEPEND}
 	accessibility? ( app-accessibility/orca )
+	ocr? ( app-text/tesseract )
 "
 
 pkg_postinst() {
@@ -160,11 +154,9 @@ pkg_postinst() {
 		ewarn " MYCMAKEARGS=\"-DLIBCXX_TYPEINFO_COMPARISON_IMPLEMENTATION=2\""
 		ewarn "You may then need to rebuild dev-qt/* and kde-*/*."
 	fi
-
-	if ! use qt5 && has_version dev-qt/qtgui; then
-		ewarn "KF5- and Qt5-based applications will exhibit various integration bugs"
-		ewarn "and generally look out of place in Plasma 6 without the dependencies"
-		ewarn "enforced by kde-plasma/plasma-meta[qt5]."
+	if has_version dev-qt/qtgui; then
+		ewarn "KF5 and Qt5 support was removed in Gentoo. Such applications will exhibit"
+		ewarn "various integration bugs and generally look out of place in Plasma 6."
 		ewarn
 		ewarn "This warning message is being displayed because dev-qt/qtgui:5 is"
 		ewarn "currently installed which indicates the use of such applications."
