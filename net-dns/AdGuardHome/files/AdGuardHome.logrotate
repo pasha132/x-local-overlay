@@ -1,0 +1,6 @@
+/var/log/AdGuardHome/*.log {
+    missingok
+    notifempty
+    sharedscripts
+    copytruncate
+}
