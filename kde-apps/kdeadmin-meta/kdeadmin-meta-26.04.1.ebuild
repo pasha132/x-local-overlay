@@ -12,5 +12,6 @@ KEYWORDS="~amd64 ~arm64 ~loong ~ppc64 ~riscv ~x86"
 IUSE="+cron"
 
 RDEPEND="
+	>=app-admin/kio-admin-${PV}:*
 	cron? ( >=kde-apps/kcron-${PV}:* )
 "
