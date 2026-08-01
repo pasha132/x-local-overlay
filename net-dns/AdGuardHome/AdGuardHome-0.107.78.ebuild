@@ -21,7 +21,7 @@ RESTRICT="mirror"
 
 RDEPEND=""
 BDEPEND="
-	>=dev-lang/go-1.26.4
+	>=dev-lang/go-1.26.5
 "
 
 DOCS=( CHANGELOG.md README.md )
@@ -54,10 +54,11 @@ src_install() {
 	einstalldocs
 
 	dobin ${PN}
-	newinitd "${FILESDIR}/AdGuardHome.init" AdGuardHome
+	newconfd "${FILESDIR}"/${PN}.confd ${PN}
+	newinitd "${FILESDIR}"/${PN}.initd ${PN}
 
 	insinto /etc/${PN}
-	newins "${FILESDIR}/AdGuardHome.yaml" AdGuardHome.yaml
+	newins "${FILESDIR}"/${PN}.yaml ${PN}.yaml
 
 	insinto /etc/logrotate.d
 	newins "${FILESDIR}"/${PN}.logrotate ${PN}

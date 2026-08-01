@@ -1,0 +1,7 @@
+# /etc/conf.d/AdGuardHome: config file for /etc/init.d/AdGuardHome
+
+# Nice level of xray
+#SSD_NICELEVEL=0
+
+# I/O nice level of xray
+#SSD_IONICELEVEL=0
