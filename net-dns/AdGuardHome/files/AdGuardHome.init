@@ -7,8 +7,10 @@ ADGUARDHOME_LOGFILE=${ADGUARDHOME_LOGFILE:-/var/log/AdGuardHome/adguardhome.log}
 ADGUARDHOME_UMASK=${ADGUARDHOME_UMASK:-007}
 
 description="Privacy protection center for you and your devices"
+supervisor="supervise-daemon"
 command="/usr/bin/AdGuardHome"
-command_args="--no-check-update --config /etc/AdGuardHome/AdGuardHome.yaml --work-dir ${ADGUARDHOME_WORKDIR} --pidfile /run/${RC_SVCNAME}.pid"
+command_args="--no-check-update --config /etc/AdGuardHome/AdGuardHome.yaml --work-dir ${ADGUARDHOME_WORKDIR}"
+command_args_background="--pidfile /run/${RC_SVCNAME}.pid"
 pidfile="/run/${RC_SVCNAME}.pid"
 command_background="yes"
 

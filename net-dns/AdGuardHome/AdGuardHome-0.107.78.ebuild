@@ -21,7 +21,7 @@ RESTRICT="mirror"
 
 RDEPEND=""
 BDEPEND="
-	>=dev-lang/go-1.26.4
+	>=dev-lang/go-1.26.5
 "
 
 DOCS=( CHANGELOG.md README.md )
