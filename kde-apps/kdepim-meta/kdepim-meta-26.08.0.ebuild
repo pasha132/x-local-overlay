@@ -27,7 +27,6 @@ RDEPEND="
 	>=kde-apps/kmail-account-wizard-${PV}:*
 	>=kde-apps/kmailtransport-${PV}:*
 	>=kde-apps/kmbox-${PV}:*
-	>=kde-apps/kmime-${PV}:*
 	>=kde-apps/kontactinterface-${PV}:*
 	>=kde-apps/kpimtextedit-${PV}:*
 	>=kde-apps/ksmtp-${PV}:*

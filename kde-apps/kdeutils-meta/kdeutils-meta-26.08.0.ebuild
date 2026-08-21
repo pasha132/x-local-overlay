@@ -8,8 +8,8 @@ HOMEPAGE="https://apps.kde.org/categories/utilities/"
 
 LICENSE="metapackage"
 SLOT="0"
-KEYWORDS="~amd64 ~arm64 ~loong ~ppc64 ~x86"
-IUSE="7zip gpg lrz plasma rar +webengine"
+KEYWORDS="~amd64 ~arm64 ~ppc64 ~x86"
+IUSE="7zip gpg kwallet lrz plasma rar +webengine"
 
 RDEPEND="
 	>=app-cdr/dolphin-plugins-mountiso-${PV}:*
@@ -18,10 +18,10 @@ RDEPEND="
 	>=kde-apps/kcalc-${PV}:*
 	>=kde-apps/kdebugsettings-${PV}:*
 	>=kde-apps/ktimer-${PV}:*
-	>=kde-apps/kwalletmanager-${PV}:*
 	>=kde-apps/sweeper-${PV}:*
 	>=kde-misc/markdownpart-${PV}:*
 	gpg? ( >=kde-apps/kgpg-${PV}:* )
+	kwallet? ( >=kde-apps/kwalletmanager-${PV}:* )
 	plasma? ( >=kde-misc/kclock-${PV} )
 	webengine? (
 		>=app-editors/ghostwriter-${PV}
