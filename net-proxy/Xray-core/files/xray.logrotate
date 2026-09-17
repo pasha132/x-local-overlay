@@ -1,6 +1,0 @@
-/var/log/xray/xray.*.log {
-    missingok
-    notifempty
-    sharedscripts
-    copytruncate
-}
