@@ -10,27 +10,24 @@ HOMEPAGE="https://kde.org/plasma-desktop/"
 
 LICENSE="metapackage"
 SLOT="6"
-KEYWORDS="~amd64 ~arm64 ~ppc64 ~riscv ~x86"
-IUSE="accessibility bluetooth +browser-integration +crash-handler crypt cups
-discover +display-manager +elogind +firewall flatpak grub gtk +kwallet
+KEYWORDS="~amd64 ~arm64"
+IUSE="accessibility +backup bluetooth +browser-integration +crash-handler crypt
+cups discover +display-manager +elogind +firewall flatpak grub gtk +kwallet
 +networkmanager ocr oxygen-theme plymouth pulseaudio rdp +sddm sdk +smart
-systemd thunderbolt unsupported virtualkeyboard wacom +wallpapers webengine X
-+xwayland"
+systemd thunderbolt unsupported virtualkeyboard wacom +wallpapers webengine 
+welcome +xwayland"
 
 REQUIRED_USE="^^ ( elogind systemd ) firewall? ( systemd )"
 
 RDEPEND="
-	!${CATEGORY}/${PN}:5
-	!kde-plasma/khotkeys:5
 	>=kde-plasma/aurorae-${PV}:${SLOT}
 	>=kde-plasma/kactivitymanagerd-${PV}:${SLOT}
 	>=kde-plasma/kde-cli-tools-${PV}:${SLOT}
 	>=kde-plasma/kde-cli-tools-common-${PV}
 	>=kde-plasma/kdecoration-${PV}:${SLOT}
 	>=kde-plasma/kdeplasma-addons-${PV}:${SLOT}
-	>=kde-plasma/kdesu-gui-${PV}[X?]
 	>=kde-plasma/keditfiletype-${PV}
-	>=kde-plasma/kglobalacceld-${PV}:${SLOT}[X(-)?]
+	>=kde-plasma/kglobalacceld-${PV}:${SLOT}
 	>=kde-plasma/kinfocenter-${PV}:${SLOT}
 	>=kde-plasma/kmenuedit-${PV}:${SLOT}
 	>=kde-plasma/knighttime-${PV}:${SLOT}
@@ -52,9 +49,9 @@ RDEPEND="
 	>=kde-plasma/plasma-activities-stats-${PV}:${SLOT}
 	>=kde-plasma/plasma-desktop-${PV}:${SLOT}
 	>=kde-plasma/plasma-integration-${PV}:${SLOT}
-	>=kde-plasma/plasma-login-sessions-${PV}:${SLOT}[X?]
 	>=kde-plasma/plasma-systemmonitor-${PV}:${SLOT}
-	>=kde-plasma/plasma-workspace-${PV}:${SLOT}[X?]
+	welcome? ( >=kde-plasma/plasma-welcome-${PV}:${SLOT} )
+	>=kde-plasma/plasma-workspace-${PV}:${SLOT}
 	>=kde-plasma/plasma5support-${PV}:${SLOT}
 	>=kde-plasma/polkit-kde-agent-${PV}:*
 	>=kde-plasma/powerdevil-${PV}:${SLOT}
@@ -64,6 +61,7 @@ RDEPEND="
 	sys-apps/dbus[elogind?,systemd?]
 	sys-auth/polkit[elogind?,systemd?]
 	sys-fs/udisks:2[elogind?,systemd?]
+	backup? ( >=kde-plasma/kup-${PV}:${SLOT} )
 	bluetooth? ( >=kde-plasma/bluedevil-${PV}:${SLOT} )
 	browser-integration? ( >=kde-plasma/plasma-browser-integration-${PV}:${SLOT} )
 	crash-handler? (
@@ -99,7 +97,7 @@ RDEPEND="
 	)
 	oxygen-theme? (
 		>=kde-frameworks/oxygen-icons-6.0.0:*
-		>=kde-plasma/oxygen-${PV}:${SLOT}[X?]
+		>=kde-plasma/oxygen-${PV}:${SLOT}
 		>=kde-plasma/oxygen-sounds-${PV}:${SLOT}
 	)
 	plymouth? (
@@ -120,12 +118,7 @@ RDEPEND="
 	wacom? ( >=kde-plasma/plasma-desktop-${PV}:${SLOT}[input_devices_wacom] )
 	wallpapers? ( >=kde-plasma/plasma-workspace-wallpapers-${PV}:${SLOT} )
 	webengine? ( kde-apps/khelpcenter:6 )
-	X? (
-		>=kde-plasma/kgamma-${PV}:${SLOT}
-		>=kde-plasma/kwin-x11-${PV}:${SLOT}[lock]
-		wacom? ( >=kde-plasma/wacomtablet-${PV}:${SLOT} )
-	)
-	xwayland? ( >=gui-apps/xwaylandvideobridge-0.4.0_p20250215-r1 )
+	xwayland? ( >=gui-apps/xwaylandvideobridge-0.5.0 )
 "
 # NOTE spectacle moved from KDE Gear (yy.mm) to KDE Plasma version scheme
 # TODO drop after 2027-04-26
